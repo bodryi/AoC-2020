@@ -1022,23 +1022,11 @@ const passports = input.split('\n\n').map((raw) =>
 
 const result = passports.filter(
   (p) =>
-    !REQUIRED_FIELDS.find((field) => {
-      if (
-        p.hasOwnProperty(field.name) &&
-        field.name === 'pid' &&
-        field.validationFn(p[field.name])
-      ) {
-        console.log(
-          field.name,
-          p[field.name],
-          field.validationFn(p[field.name]),
-        );
-      }
-      return (
+    !REQUIRED_FIELDS.find(
+      (field) =>
         !p.hasOwnProperty(field.name) ||
-        (p.hasOwnProperty(field.name) && !field.validationFn(p[field.name]))
-      );
-    }),
+        (p.hasOwnProperty(field.name) && !field.validationFn(p[field.name])),
+    ),
 );
 
 console.log(result.length);

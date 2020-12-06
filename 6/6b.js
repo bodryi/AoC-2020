@@ -2071,11 +2071,11 @@ const result = groups.reduce((sum, group) => {
   });
 
   const intersections = sets.reduce(
-    (inter, set) => new Set([...inter].filter((a) => set.has(a))),
+    (inter, set) => [...inter].filter((a) => set.has(a)),
     sets[0],
   );
 
-  return sum + intersections.size;
+  return sum + intersections.length;
 }, 0);
 
 console.log(result);
